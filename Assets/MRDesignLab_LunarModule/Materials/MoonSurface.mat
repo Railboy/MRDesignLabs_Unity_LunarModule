@@ -111,5 +111,5 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GradientCenter: {r: 0.8446796, g: -1.5858436, b: 2.5304847, a: 0}
-    - _GradientCenterA: {r: 0, g: 0, b: 0.0985, a: 0}
-    - _GradientCenterB: {r: 0, g: -100000, b: 0, a: 0}
+    - _GradientCenterA: {r: 0, g: 0.0009256776, b: 0.09849565, a: 0}
+    - _GradientCenterB: {r: 0, g: -0.07533331, b: 1.9999504, a: 0}

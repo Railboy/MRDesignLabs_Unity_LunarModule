@@ -230,8 +230,8 @@ namespace MRDL
             yield return new WaitForSeconds(0.25f);
 
             // Subscribe to the finishing message for the plane scanner
-            SurfaceMeshesToPlanes.EventHandler handler = new SurfaceMeshesToPlanes.EventHandler(MakePlanesComplete);
-            SurfaceMeshesToPlanes.Instance.MakePlanesComplete += handler;
+            //SurfaceMeshesToPlanes.EventHandler handler = new SurfaceMeshesToPlanes.EventHandler(MakePlanesComplete);
+            //SurfaceMeshesToPlanes.Instance.MakePlanesComplete += handler;
 
             // Start scanning the room
             SpatialUnderstanding.Instance.RequestBeginScanning();
@@ -250,7 +250,7 @@ namespace MRDL
                 yield return new WaitForSeconds(1f);
 
                 // Request planes
-                SurfaceMeshesToPlanes.Instance.MakePlanes();
+                /*SurfaceMeshesToPlanes.Instance.MakePlanes();
                 waitingForPlanes = true;
 
                 while (waitingForPlanes) {
@@ -288,7 +288,7 @@ namespace MRDL
                 if (scanQuality != newScanQuality) {
                     scanQuality = newScanQuality;
                     yield return new WaitForSeconds(1f);
-                }
+                }*/
             }
 
             // Finish
@@ -298,7 +298,7 @@ namespace MRDL
             // Tell the scanner it can stop
             SpatialUnderstanding.Instance.RequestFinishScan();
             // Un-subscribe from plane scanner
-            SurfaceMeshesToPlanes.Instance.MakePlanesComplete -= handler;
+            //SurfaceMeshesToPlanes.Instance.MakePlanesComplete -= handler;
 
             yield break;
         }

@@ -2,10 +2,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 //
+using Holotoolkit.Unity.Dialogs;
 using HoloToolkit.Unity;
 using HoloToolkit.Unity.SpatialMapping;
-using HUX.Dialogs;
-using HUX.Utility;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,7 +15,7 @@ namespace MRDL
     /// <summary>
     /// Manages saving, loading and scanning of room data
     /// </summary>
-    public class RoomScanManager : HUX.Utility.Singleton<RoomScanManager>
+    public class RoomScanManager : Singleton<RoomScanManager>
     {
         const int MaxRoomMeshes = 1000;
 

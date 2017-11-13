@@ -2,7 +2,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 //
-using HUX.Utility;
+
+using HoloToolkit.Unity;
 using UnityEngine;
 
 namespace MRDL
@@ -62,8 +63,8 @@ namespace MRDL
         private void Update() {
             if (Show) {
                 messageRenderer.enabled = true;
-                UpdateHand(leftHand, InputSources.Instance.hands.GetHandState(InputSourceHands.HandednessEnum.Left, MinConfidence), OffsetLeft);
-                UpdateHand(rightHand, InputSources.Instance.hands.GetHandState(InputSourceHands.HandednessEnum.Right, MinConfidence), OffsetRight);
+                //UpdateHand(leftHand, InputSources.Instance.hands.GetHandState(InputSourceHands.HandednessEnum.Left, MinConfidence), OffsetLeft);
+                //UpdateHand(rightHand, InputSources.Instance.hands.GetHandState(InputSourceHands.HandednessEnum.Right, MinConfidence), OffsetRight);
             } else {
                 messageRenderer.enabled = false;
                 leftHand.enabled = false;
@@ -71,7 +72,7 @@ namespace MRDL
             }
         }
 
-        private void UpdateHand (Renderer handRenderer, InputSourceHands.CurrentHandState handState, Vector2 handOffset) {
+        /*private void UpdateHand (Renderer handRenderer, InputSourceHands.CurrentHandState handState, Vector2 handOffset) {
             if (handState == null) {
                 switch (Visibility) {
                     case VisibilityEnum.Always:
@@ -125,6 +126,6 @@ namespace MRDL
                     }
                 }
             }
-        }
+        }*/
     }
 }

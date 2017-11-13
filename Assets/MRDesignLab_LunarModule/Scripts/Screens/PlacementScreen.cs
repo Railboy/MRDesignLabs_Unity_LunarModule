@@ -2,9 +2,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 //
-using HUX.Buttons;
-using HUX.Interaction;
+
 using System.Collections;
+using HoloToolkit.Unity.InputModule;
 using UnityEngine;
 
 namespace MRDL
@@ -24,9 +24,9 @@ namespace MRDL
             confirmPlacementParent.SetActive(false);
         }
 
-        protected override void OnTapped(GameObject obj, InteractionManager.InteractionEventArgs eventArgs)
+        protected override void InputClicked(GameObject obj, InputClickedEventData eventData)
         {
-            base.OnTapped(obj, eventArgs);
+            base.InputClicked(obj, eventData);
 
             switch (obj.name)
             {

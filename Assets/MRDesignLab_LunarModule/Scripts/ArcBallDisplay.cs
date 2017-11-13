@@ -2,11 +2,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 //
-using HUX.Utility;
+
+using LunarModule;
 using MRDL;
 using UnityEngine;
 
-namespace HUX.Interaction
+namespace MRDL.Interaction
 {
     public class ArcBallDisplay : MonoBehaviour
     {

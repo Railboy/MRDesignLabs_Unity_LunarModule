@@ -2,10 +2,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 //
-using HUX.Dialogs;
-using HUX.Focus;
-using HUX.Interaction;
-using HUX.Receivers;
+
+using HoloToolkit.Unity.Dialogs;
+using HoloToolkit.Unity.InputModule;
 using UnityEngine;
 
 namespace MRDL
@@ -35,9 +34,9 @@ namespace MRDL
             difficultyMenu.SetActive(false);
         }
 
-        protected override void OnFocusEnter(GameObject obj, FocusArgs args) {
-            base.OnFocusEnter(obj, args);
-
+        protected override void FocusEnter(GameObject obj, PointerSpecificEventData eventData)
+        {
+            base.FocusEnter(obj, eventData);
             switch (obj.name) {
                 case "Easy":
                     difficultyMenu.GetComponent<SimpleMenuCollection>().Subtitle = "Lots of fuel and a forgiving landing speed.";
@@ -53,9 +52,9 @@ namespace MRDL
             }
         }
 
-        protected override void OnTapped(GameObject obj, InteractionManager.InteractionEventArgs eventArgs)
+        protected override void InputClicked(GameObject obj, InputClickedEventData eventData)
         {
-            base.OnTapped(obj, eventArgs);
+            base.InputClicked(obj, eventData);
 
             switch (obj.name)
             {

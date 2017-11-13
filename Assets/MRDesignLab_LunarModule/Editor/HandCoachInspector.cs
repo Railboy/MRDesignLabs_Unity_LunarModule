@@ -2,7 +2,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 //
-using HUX.Interaction;
+
+
+using MRDL;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,10 +14,11 @@ namespace HUX
     public class HandCoachInspector : Editor
     {
         public override void OnInspectorGUI() {
-            HandCoach coach = (HandCoach)target;
 
-            //DrawDefaultInspector();
+            DrawDefaultInspector();
 
+            /*HandCoach coach = (HandCoach)target;
+            
             HUXEditorUtils.BeginSectionBox("Material settings");
 
             coach.HandMaterial = (Material)EditorGUILayout.ObjectField("Material", coach.HandMaterial, typeof(Material), false);
@@ -68,7 +71,7 @@ namespace HUX
 
             serializedObject.ApplyModifiedProperties();
 
-            HUXEditorUtils.SaveChanges(target);
+            HUXEditorUtils.SaveChanges(target);*/
         }
     }
 }

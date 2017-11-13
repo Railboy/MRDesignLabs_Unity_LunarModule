@@ -2,8 +2,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 //
-using HUX;
-using HUX.Utility;
+
+using HoloToolkit.Unity;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -35,9 +35,9 @@ namespace MRDL
         private IEnumerator DoLanderOpeningOverTime() {
             inPosition = false;
 
-            Vector3 directionToPad = (Veil.Instance.HeadTransform.position - LandingPadManager.Instance.LandingPad.transform.position).normalized;
+            Vector3 directionToPad = (Camera.main.transform.position - LandingPadManager.Instance.LandingPad.transform.position).normalized;
 
-            startPosition = Veil.Instance.HeadTransform.position + (directionToPad * DistanceToPlayerOnSpawn);
+            startPosition = Camera.main.transform.position + (directionToPad * DistanceToPlayerOnSpawn);
             startPosition.y = YPositionOnSpawn;
 
             Vector3 positionThisFrame = startPosition;
@@ -53,7 +53,7 @@ namespace MRDL
                     inPosition = true;
                 } else {
                     // adjust the head position
-                    headPosition = Veil.Instance.HeadTransform.position + (Veil.Instance.HeadTransform.right * DistanceToPlayerOnPassHead);
+                    headPosition = Camera.main.transform.position + (Camera.main.transform.right * DistanceToPlayerOnPassHead);
                     // move the lander along a bezier curve
                     positionThisFrame = GetPoint(startPosition, headPosition, endPosition, normalizedTime);
                     positionThisFrame.y += YPositionCurve.Evaluate(normalizedTime);

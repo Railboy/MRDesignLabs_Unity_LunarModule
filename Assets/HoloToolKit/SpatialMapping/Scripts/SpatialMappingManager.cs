@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
@@ -19,7 +22,7 @@ namespace HoloToolkit.Unity.SpatialMapping
 
         [Tooltip("The material to use for rendering spatial mapping data.")]
         [SerializeField]
-        private Material[] surfaceMaterials;
+        private Material surfaceMaterial;
 
         [Tooltip("Determines if the surface observer should be automatically started.")]
         [SerializeField]
@@ -43,6 +46,11 @@ namespace HoloToolkit.Unity.SpatialMapping
         /// </summary>
         [HideInInspector]
         public float StartTime { get; private set; }
+
+        /// <summary>
+        /// SurfaceMappingObserver GET
+        /// </summary>
+        public SpatialMappingObserver SurfaceObserver { get { return surfaceObserver; } }
 
         /// <summary>
         /// The current source of spatial mapping data.
@@ -106,18 +114,18 @@ namespace HoloToolkit.Unity.SpatialMapping
         /// <summary>
         /// The material to use when rendering surfaces.
         /// </summary>
-        public Material[] SurfaceMaterials
+        public Material SurfaceMaterial
         {
             get
             {
-                return surfaceMaterials;
+                return surfaceMaterial;
             }
             set
             {
-                if (value != surfaceMaterials)
+                if (value != surfaceMaterial)
                 {
-                    surfaceMaterials = value;
-                    SetSurfaceMaterial(surfaceMaterials);
+                    surfaceMaterial = value;
+                    SetSurfaceMaterial(surfaceMaterial);
                 }
             }
         }
@@ -173,16 +181,16 @@ namespace HoloToolkit.Unity.SpatialMapping
         /// Sets the material used by all Spatial Mapping meshes.
         /// </summary>
         /// <param name="setSurfaceMaterial">New material to apply.</param>
-        public void SetSurfaceMaterial(Material[] setSurfaceMaterial)
+        public void SetSurfaceMaterial(Material setSurfaceMaterial)
         {
-            SurfaceMaterials = setSurfaceMaterial;
+            SurfaceMaterial = setSurfaceMaterial;
             if (DrawVisualMeshes)
             {
                 foreach (MeshRenderer sourceRenderer in Source.GetMeshRenderers())
                 {
                     if (sourceRenderer != null)
                     {
-                        sourceRenderer.sharedMaterials = setSurfaceMaterial;
+                        sourceRenderer.sharedMaterial = setSurfaceMaterial;
                     }
                 }
             }
@@ -202,14 +210,18 @@ namespace HoloToolkit.Unity.SpatialMapping
         /// </summary>
         public void StartObserver()
         {
-#if UNITY_EDITOR || UNITY_UWP
-            // Allow observering if a device is present (Holographic Remoting)
-            if (!UnityEngine.VR.VRDevice.isPresent) return;
+#if UNITY_WSA
+            // Allow observing if a device is present (Holographic Remoting)
+#if UNITY_2017_2_OR_NEWER
+            if (!UnityEngine.XR.XRDevice.isPresent) { return; }
+#else
+            if (!UnityEngine.VR.VRDevice.isPresent) { return; }
+#endif
 #endif
             if (!IsObserverRunning())
             {
                 surfaceObserver.StartObserving();
-                StartTime = Time.time;
+                StartTime = Time.unscaledTime;
             }
         }
 
@@ -218,9 +230,13 @@ namespace HoloToolkit.Unity.SpatialMapping
         /// </summary>
         public void StopObserver()
         {
-#if UNITY_EDITOR || UNITY_UWP
-            // Allow observering if a device is present (Holographic Remoting)
-            if (!UnityEngine.VR.VRDevice.isPresent) return;
+#if UNITY_WSA
+            // Allow observing if a device is present (Holographic Remoting)
+#if UNITY_2017_2_OR_NEWER
+            if (!UnityEngine.XR.XRDevice.isPresent) { return; }
+#else
+            if (!UnityEngine.VR.VRDevice.isPresent) { return; }
+#endif
 #endif
             if (IsObserverRunning())
             {
@@ -314,7 +330,7 @@ namespace HoloToolkit.Unity.SpatialMapping
                         renderers[index].enabled = enable;
                         if (enable)
                         {
-                            renderers[index].sharedMaterials = SurfaceMaterials;
+                            renderers[index].sharedMaterial = SurfaceMaterial;
                         }
                     }
                 }

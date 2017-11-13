@@ -109,7 +109,7 @@ namespace MRDL
             startupPlacementConfirmed = false;
             // Instantiate a landing pad
             // Place the landing pad in front of the player to begin with
-            LandingPad.transform.position = Veil.Instance.HeadTransform.position + Veil.Instance.HeadTransform.forward;
+            LandingPad.transform.position = Camera.main.transform.position + Camera.main.transform.forward;
             LandingPad.gameObject.SetActive(true);
 
             bool setFirstPosition = false;

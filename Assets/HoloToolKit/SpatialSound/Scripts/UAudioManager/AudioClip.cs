@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using System;
 
 namespace HoloToolkit.Unity
 {
@@ -8,10 +11,10 @@ namespace HoloToolkit.Unity
     [Serializable]
     public class UAudioClip
     {
-        public UnityEngine.AudioClip sound = null;
-        public bool looping = false;
+        public UnityEngine.AudioClip Sound = null;
+        public bool Looping = false;
 
-        public float delayCenter = 0;
-        public float delayRandomization = 0;
+        public float DelayCenter = 0;
+        public float DelayRandomization = 0;
     }
 }

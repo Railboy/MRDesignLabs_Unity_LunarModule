@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using UnityEngine;
 
 namespace HoloToolkit.Unity
 {
@@ -7,14 +10,10 @@ namespace HoloToolkit.Unity
     /// </summary>
     public static class Utils
     {
+        [System.Obsolete("Use GameObjectExtensions.SetLayerRecursively(gameObject, layer) instead;")]
         public static void SetLayerRecursively(GameObject gameObject, int layer)
         {
-            gameObject.layer = layer;
-
-            for (int i = 0; i < gameObject.transform.childCount; ++i)
-            {
-                SetLayerRecursively(gameObject.transform.GetChild(i).gameObject, layer);
-            }
+            gameObject.SetLayerRecursively(layer);
         }
 
         /// <summary>
@@ -61,8 +60,8 @@ namespace HoloToolkit.Unity
         public static void MoveObjectInFrontOfUser(Transform stageTransform, Transform tran, Vector3 offset, float yawOffset)
         {
             // have obj track head position with translation offset
-            Vector3 stageHeadPos = MathUtils.TransformPointFromTo(null, stageTransform, Camera.main.transform.transform.position);
-            Vector3 stageHeadDir = MathUtils.TransformDirectionFromTo(null, stageTransform, Camera.main.transform.transform.forward);
+            Vector3 stageHeadPos = MathUtils.TransformPointFromTo(null, stageTransform, CameraCache.Main.transform.position);
+            Vector3 stageHeadDir = MathUtils.TransformDirectionFromTo(null, stageTransform, CameraCache.Main.transform.forward);
             stageHeadDir.y = 0.0f; // ignore head pitch - use head position to set height
             stageHeadDir.Normalize();
             Vector3 sideDir = Vector3.Cross(stageHeadDir, Vector3.up).normalized;
@@ -142,7 +141,7 @@ namespace HoloToolkit.Unity
         /// <returns>true if running in editor, false if windows store app</returns>
         public static bool IsInEditor()
         {
-#if UNITY_METRO && !UNITY_EDITOR
+#if UNITY_WSA && !UNITY_EDITOR
             return false;
 #else
             return true;

@@ -117,7 +117,7 @@ namespace MRDL
 
             if (setStartupPosition) {
                 Vector3 landerPosition = landerPositionTransform.position;
-                landerPosition.y = Veil.Instance.HeadTransform.position.y;
+                landerPosition.y = Camera.main.transform.position.y;
                 landerPositionTransform.position = landerPosition;
                 landerObject.transform.position = landerPosition;
             }

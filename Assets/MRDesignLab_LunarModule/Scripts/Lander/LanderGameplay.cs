@@ -2,7 +2,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 //
-using HUX.Utility;
+
+using HoloToolkit.Unity;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -263,15 +264,15 @@ namespace MRDL
                 landerStartPosition = landingPadPosition + randomPosition;
 
                 // If the position is too close to player, skip this position
-                if (Vector3.Distance(landerStartPosition, Veil.Instance.HeadTransform.position) < Settings.MinDistanceFromPlayer) {
+                if (Vector3.Distance(landerStartPosition, Camera.main.transform.position) < Settings.MinDistanceFromPlayer) {
                     yield return null;
                     continue;
                 }
 
                 // If the position is behind the player, skip this position
-                Vector3 dir = landerStartPosition - Veil.Instance.HeadTransform.position;
+                Vector3 dir = landerStartPosition - Camera.main.transform.position;
                 dir.y = 0f;
-                Vector3 forward = Veil.Instance.HeadTransform.forward;
+                Vector3 forward = Camera.main.transform.forward;
                 forward.y = 0f;
 
                 dir.Normalize();

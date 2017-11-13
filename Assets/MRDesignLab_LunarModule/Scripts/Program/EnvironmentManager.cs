@@ -2,6 +2,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 //
+using HoloToolkit.Unity;
 using HoloToolkit.Unity.SpatialMapping;
 using HUX;
 using System.Collections;
@@ -13,7 +14,7 @@ namespace MRDL
     /// <summary>
     /// Creates scattered moon rocks and controls the skybox / stars / earth
     /// </summary>
-    public class EnvironmentManager : HUX.Utility.Singleton<EnvironmentManager>
+    public class EnvironmentManager : Singleton<EnvironmentManager>
     {
         public const int MoonSurfaceLayer = 9;
         public const int RoomSurfaceLayer = 12;
@@ -133,7 +134,7 @@ namespace MRDL
         }
 
         private void Update() {
-            if (Veil.Instance == null || Veil.Instance.HeadTransform == null)
+            if (Camera.main == null)
                 return;
 
             // Don't show earth or moonlight when a menu is open
@@ -151,14 +152,14 @@ namespace MRDL
                     break;
             }
 
-            Vector3 shaderFocusPoint = Veil.Instance.HeadTransform.position;
+            Vector3 shaderFocusPoint = Camera.main.transform.position;
 
             if (!LandingPadManager.Instance.LandingPlacementConfirmed || !LandingPadManager.Instance.StartupPlacementConfirmed) {
                 // Get a raycast hit from our environment
                 int layerMask = 1 << EnvironmentManager.MoonSurfaceLayer | 1 << EnvironmentManager.RoomSurfaceLayer;
                 if (Physics.Raycast(
-                    Veil.Instance.HeadTransform.position,
-                    Veil.Instance.HeadTransform.forward,
+                    Camera.main.transform.position,
+                    Camera.main.transform.forward,
                     out environmentHit,
                     float.MaxValue,
                     layerMask,
@@ -192,7 +193,8 @@ namespace MRDL
                         meshes[i].tag = EnvironmentManager.MoonSurfaceTag;
                         meshes[i].GetComponent<MeshRenderer>().sharedMaterials = gridMaterials;
                     }
-                    SpatialMappingManager.Instance.SurfaceMaterials = gridMaterials;
+                    // TODO SPATIAL MAPPING MATERIALS
+                    //SpatialMappingManager.Instance.SurfaceMaterials = gridMaterials;
                     break;
 
                 case ProgramStateEnum.Gameplay:
@@ -203,7 +205,8 @@ namespace MRDL
                         meshes[i].tag = EnvironmentManager.MoonSurfaceTag;
                         meshes[i].GetComponent<MeshRenderer>().sharedMaterials = surfaceMaterials;
                     }
-                    SpatialMappingManager.Instance.SurfaceMaterials = surfaceMaterials;
+                    // TODO SPATIAL MAPPING MATERIALS
+                    //SpatialMappingManager.Instance.SurfaceMaterials = surfaceMaterials;
                     cielingHeight = LandingPadManager.Instance.LanderStartupPosition.y;
                     break;
             }

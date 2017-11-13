@@ -2,12 +2,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 //
-using HUX;
-using HUX.Interaction;
-using HUX.Receivers;
+using HoloToolkit.Unity.Receivers;
 using System;
 using System.Collections;
 using UnityEngine;
+using HoloToolkit.Unity.InputModule;
 
 namespace MRDL
 {
@@ -68,9 +67,8 @@ namespace MRDL
             }
         }
 
-        protected override void OnTapped(GameObject obj, InteractionManager.InteractionEventArgs eventArgs) {
-            base.OnTapped(obj, eventArgs);
-
+        protected override void InputClicked(GameObject obj, InputClickedEventData eventData)
+        {
             if (obj == null)
                 return;
 
@@ -120,7 +118,7 @@ namespace MRDL
         }
 
         #if UNITY_EDITOR
-        protected override void OnDrawGizmos() {
+        protected void OnDrawGizmos() {
             if (!Application.isPlaying) {
                 SetPage(page);
             }
@@ -141,7 +139,7 @@ namespace MRDL
             // Wait for lander to set itself up
             // Then do a one-time rotation towards the player
             yield return null;
-            Vector3 forward = Veil.Instance.HeadTransform.forward;
+            Vector3 forward = Camera.main.transform.forward;//Camera.main.transform.forward;
             forward.y = 0f;
             LanderInput.Instance.SetForward(-forward.normalized);
 

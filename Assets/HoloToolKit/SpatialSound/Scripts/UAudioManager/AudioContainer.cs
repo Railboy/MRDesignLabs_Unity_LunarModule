@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using System;
 using UnityEngine;
 
 namespace HoloToolkit.Unity
@@ -11,12 +14,12 @@ namespace HoloToolkit.Unity
     public class AudioContainer
     {
         [Tooltip("The type of the audio container.")]
-        public AudioContainerType containerType = AudioContainerType.Random;
+        public AudioContainerType ContainerType = AudioContainerType.Random;
 
-        public bool looping = false;
-        public float loopTime = 0;
-        public UAudioClip[] sounds = null;
-        public float crossfadeTime = 0f;
-        public int currentClip = 0;
+        public bool Looping = false;
+        public float LoopTime = 0;
+        public UAudioClip[] Sounds = null;
+        public float CrossfadeTime = 0f;
+        public int CurrentClip = 0;
     }
 }

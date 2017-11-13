@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using UnityEngine;
 
 namespace HoloToolkit.Unity.InputModule
 {
@@ -78,13 +81,10 @@ namespace HoloToolkit.Unity.InputModule
         /// Updates the StablePosition and StableRotation based on GazeSample values.
         /// Call this method with Raycasthit parameters to get stable values.
         /// </summary>
-        /// <param name="position">Position value from a RaycastHit point.</param>
-        /// <param name="rotation">Rotation value from a RaycastHit rotation.</param>
-        public override void UpdateStability(Vector3 position, Quaternion rotation)
+        /// <param name="gazePosition">Position value from a RaycastHit point.</param>
+        /// <param name="gazeDirection">Direction value from a RaycastHit rotation.</param>
+        public override void UpdateStability(Vector3 gazePosition, Vector3 gazeDirection)
         {
-            Vector3 gazePosition = position;
-            Vector3 gazeDirection = rotation * Vector3.forward;
-
             positionRollingStats.AddSample(gazePosition);
             directionRollingStats.AddSample(gazeDirection);
 

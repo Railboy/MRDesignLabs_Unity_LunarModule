@@ -3,8 +3,6 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 //
 using HoloToolkit.UI.Keyboard;
-using HUX.Dialogs;
-using HUX.Interaction;
 using System.Collections;
 using UnityEngine;
 

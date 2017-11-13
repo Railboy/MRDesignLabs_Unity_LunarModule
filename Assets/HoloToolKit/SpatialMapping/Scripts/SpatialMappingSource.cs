@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
@@ -53,7 +56,7 @@ namespace HoloToolkit.Unity.SpatialMapping
         /// <summary>
         /// Material to use for rendering the mesh
         /// </summary>
-        protected virtual Material[] RenderMaterials { get { return SpatialMappingManager.Instance.SurfaceMaterials; } }
+        protected virtual Material RenderMaterial { get { return SpatialMappingManager.Instance.SurfaceMaterial; } }
 
         private readonly List<SurfaceObject> surfaceObjectsWriteable;
         private readonly ReadOnlyCollection<SurfaceObject> surfaceObjects;
@@ -99,8 +102,8 @@ namespace HoloToolkit.Unity.SpatialMapping
             surfaceObject.Filter.sharedMesh = mesh;
 
             surfaceObject.Renderer = surfaceObject.Object.GetComponent<MeshRenderer>();
-            surfaceObject.Renderer.sharedMaterials = RenderMaterials;
-            surfaceObject.Renderer.enabled = true; //(drawVisualMeshesOverride ?? SpatialMappingManager.Instance.DrawVisualMeshes);
+            surfaceObject.Renderer.sharedMaterial = RenderMaterial;
+            surfaceObject.Renderer.enabled = (drawVisualMeshesOverride ?? SpatialMappingManager.Instance.DrawVisualMeshes);
             surfaceObject.Renderer.shadowCastingMode = ((castShadowsOverride ?? SpatialMappingManager.Instance.CastShadows) ? ShadowCastingMode.On : ShadowCastingMode.Off);
 
             surfaceObject.Collider = surfaceObject.Object.GetComponent<MeshCollider>();

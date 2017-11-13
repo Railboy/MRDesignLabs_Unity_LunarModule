@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using UnityEngine;
 
 namespace HoloToolkit.Unity
 {
@@ -55,9 +58,9 @@ namespace HoloToolkit.Unity
             // If the specified minimum distance for the tagalong would be within the
             // camera's near clipping plane, adjust it to be 10% beyond the near
             // clipping plane.
-            if (Camera.main.nearClipPlane > MinimumTagalongDistance)
+            if (CameraCache.Main.nearClipPlane > MinimumTagalongDistance)
             {
-                MinimumTagalongDistance = Camera.main.nearClipPlane * 1.1f;
+                MinimumTagalongDistance = CameraCache.Main.nearClipPlane * 1.1f;
             }
 
             // The EnforceDistance functionality of the SimmpleTagalong has a
@@ -82,11 +85,11 @@ namespace HoloToolkit.Unity
                 // we need to update the Tagalong's position because it is behind
                 // some other hologram or the Spatial Mapping mesh.
                 Vector3 newPosition;
-                if (AdjustTagalongDistance(out newPosition))
+                if (AdjustTagalongDistance(CameraCache.Main.transform.position, out newPosition))
                 {
                     interpolator.PositionPerSecond = DepthUpdateSpeed;
                     interpolator.SetTargetPosition(newPosition);
-                    TagalongDistance = Mathf.Min(defaultTagalongDistance, Vector3.Distance(Camera.main.transform.position, newPosition));
+                    TagalongDistance = Mathf.Min(defaultTagalongDistance, Vector3.Distance(CameraCache.Main.transform.position, newPosition));
                 }
             }
         }
@@ -98,7 +101,7 @@ namespace HoloToolkit.Unity
             toPosition = fromPosition;
 
             // Cache some things that we will need later.
-            Transform cameraTransform = Camera.main.transform;
+            Transform cameraTransform = CameraCache.Main.transform;
             Vector3 cameraPosition = cameraTransform.position;
 
             // Get the bounds of the Tagalong's collider.
@@ -206,7 +209,7 @@ namespace HoloToolkit.Unity
         private Vector3 CalculateTargetPosition(bool isHorizontal, Vector3 centermostEdge, Vector3 vectorTowardCenter, float width,
             Vector3 center, Plane frustumPlane, bool invertAngle)
         {
-            Transform cameraTransform = Camera.main.transform;
+            Transform cameraTransform = CameraCache.Main.transform;
             Vector3 cameraPosition = cameraTransform.position;
 
             // The target overlap can't be less than the minimum overlap. Pick
@@ -251,15 +254,13 @@ namespace HoloToolkit.Unity
             return newCalculatedTargetPosition;
         }
 
-        private bool AdjustTagalongDistance(out Vector3 newPosition)
+        private bool AdjustTagalongDistance(Vector3 cameraPosition, out Vector3 newPosition)
         {
             bool needsUpdating = false;
 
             // Get the actual width and height of the Tagalong's BoxCollider.
             float width = tagalongCollider.size.x * transform.lossyScale.x;
             float height = tagalongCollider.size.y * transform.lossyScale.y;
-
-            Vector3 cameraPosition = Camera.main.transform.position;
 
             // Find the lower-left corner of the Tagalong's BoxCollider.
             Vector3 lowerLeftCorner = transform.position - (transform.right * (width / 2)) - (transform.up * (height / 2));

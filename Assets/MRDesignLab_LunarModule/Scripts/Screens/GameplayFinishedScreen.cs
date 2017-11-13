@@ -3,10 +3,10 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 //
 using HoloToolkit.UI.Keyboard;
-using HUX.Dialogs;
-using HUX.Interaction;
 using System.Collections;
 using UnityEngine;
+using HoloToolkit.Unity.InputModule;
+using HoloToolkit.Unity.Dialogs;
 
 namespace MRDL
 {
@@ -45,9 +45,9 @@ namespace MRDL
             LanderEffects.Instance.HideLander();
         }
 
-        protected override void OnTapped(GameObject obj, InteractionManager.InteractionEventArgs eventArgs)
+        protected override void InputClicked(GameObject obj, InputClickedEventData eventData)
         {
-            base.OnTapped(obj, eventArgs);
+            base.InputClicked(obj, eventData);
 
             switch (obj.name)
             {
@@ -111,7 +111,7 @@ namespace MRDL
         private void OnTextUpdated (string text) {
             highScoreText = text;
             if (highScoreText.Length >= HighScoreManager.MaxInitials) {
-                Keyboard.Instance.onTextUpdated -= OnTextUpdated;
+                Keyboard.Instance.OnTextUpdated -= OnTextUpdated;
                 Keyboard.Instance.Close();
             }
         }

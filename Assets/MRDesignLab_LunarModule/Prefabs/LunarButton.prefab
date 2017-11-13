@@ -145,6 +145,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 2
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -160,6 +161,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -177,6 +179,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -192,6 +195,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -251,9 +255,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e77a98cf320fe9340a55eecfe4567ca4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FilterTag:
-    Tag: Default
   ButtonState: 4
+  ButtonPressFilter: 1
   RequireGaze: 1
   MainCollider: {fileID: 65993064671435812}
   MainRenderer: {fileID: 23358508426323456}
@@ -282,8 +285,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffc886b5774e0184990bff0ce51eaf92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Profile: {fileID: 11400000, guid: 6d8c51af7e80d394f81bcfbbefb8d4db, type: 2}
   TextMesh: {fileID: 102999891068218110}
-  TextProfile: {fileID: 11400000, guid: 6d8c51af7e80d394f81bcfbbefb8d4db, type: 2}
   OverrideFontStyle: 0
   Style: 0
   OverrideAnchor: 0
@@ -304,10 +307,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86772d5ca853e924ba484bc960537c04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MeshProfile: {fileID: 11400000, guid: 4028b2c14dd74df4593d6e422b22f191, type: 2}
+  Profile: {fileID: 11400000, guid: 4028b2c14dd74df4593d6e422b22f191, type: 2}
   TargetTransform: {fileID: 4415358915469728}
   Renderer: {fileID: 23011278037581168}
-  MeshFilter: {fileID: 0}
 --- !u!114 &114923822525732462
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -319,5 +321,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7f67074a40850544a196681fad1325f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SoundProfile: {fileID: 11400000, guid: 7b6dfeca62ba7c24b83a85883573e353, type: 2}
+  Profile: {fileID: 11400000, guid: 7b6dfeca62ba7c24b83a85883573e353, type: 2}
   audioSource: {fileID: 0}

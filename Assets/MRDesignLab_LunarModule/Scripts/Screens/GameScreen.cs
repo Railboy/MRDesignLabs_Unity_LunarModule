@@ -3,9 +3,7 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 //
 using HoloToolkit.Unity;
-using HUX.Dialogs;
-using HUX.Interaction;
-using HUX.Receivers;
+using HoloToolkit.Unity.Receivers;
 using UnityEngine;
 
 namespace MRDL

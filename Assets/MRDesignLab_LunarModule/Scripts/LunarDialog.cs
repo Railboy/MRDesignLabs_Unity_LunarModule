@@ -2,13 +2,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 //
-using HUX.Buttons;
-using HUX.Collections;
+
+using HoloToolkit.Unity.Buttons;
+using HoloToolkit.Unity.Collections;
 using System;
 using System.Text;
 using UnityEngine;
 
-namespace HUX.Dialogs
+namespace HoloToolkit.Unity.Dialogs
 {
     public class LunarDialog : SimpleDialog
     {

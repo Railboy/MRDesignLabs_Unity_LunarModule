@@ -5,7 +5,7 @@
 using System;
 using UnityEngine;
 
-namespace HUX.Interaction
+namespace MRDL
 {
     /// <summary>
     /// Class for displaying gesture tutorials
@@ -420,7 +420,7 @@ namespace HUX.Interaction
             bool lTracked = true;
             if (CheckTracking == HandVisibilityEnum.Both || CheckTracking == HandVisibilityEnum.Right) {
                 // If we're checking tracking, tracking is set from input source
-                rTracked = InputSources.Instance.hands.IsHandVisible(InputSourceHands.HandednessEnum.Right);
+                //rTracked = InputSources.Instance.hands.IsHandVisible(InputSourceHands.HandednessEnum.Right);
             } else {
                 // If we're not checking tracking, it's set from tracking value
                 rTracked = (tracking == HandVisibilityEnum.Right || tracking == HandVisibilityEnum.Both);
@@ -428,7 +428,7 @@ namespace HUX.Interaction
 
             if (CheckTracking == HandVisibilityEnum.Both || CheckTracking == HandVisibilityEnum.Left) {
                 // If we're checking tracking, tracking is set from input source
-                lTracked = InputSources.Instance.hands.IsHandVisible(InputSourceHands.HandednessEnum.Left);
+                //lTracked = InputSources.Instance.hands.IsHandVisible(InputSourceHands.HandednessEnum.Left);
             } else {
                 // If we're not checking tracking, it's set from tracking value
                 lTracked = (tracking == HandVisibilityEnum.Left || tracking == HandVisibilityEnum.Both);

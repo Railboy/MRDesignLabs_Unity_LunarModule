@@ -46,7 +46,7 @@ namespace MRDL
         [SerializeField]
         private Transform[] yawThrustersNegative;
         [SerializeField]
-        private Transform gasTransform;
+        private Transform[] gasTransforms;
         [SerializeField]
         private Light thrusterLight;
         [SerializeField]
@@ -184,7 +184,10 @@ namespace MRDL
                 SetModuleValues(yawThrustersNegative, 0);
             }
 
-            gasTransform.localScale = new Vector3(1f, (float)LanderGameplay.Instance.Fuel / LanderGameplay.Instance.Settings.FuelOnStartup, 1f);
+            for (int i = 0; i < gasTransforms.Length; i++)
+            {
+                gasTransforms[i].localScale = new Vector3(1f, (float)LanderGameplay.Instance.Fuel / LanderGameplay.Instance.Settings.FuelOnStartup, 1f);
+            }
             
             // Take care of our tutorial settings
             if (ShowGyro) {
